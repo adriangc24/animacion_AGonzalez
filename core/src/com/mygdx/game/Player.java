@@ -43,9 +43,9 @@ public class Player {
         animations = new Animation[1];
         animations[0]= walkingAnimation;
 
-        setCurretAnimation(WALKING);
+        setCurrentAnimation(WALKING);
     }
-        public void setCurretAnimation(int currentAnimation){
+        public void setCurrentAnimation(int currentAnimation){
             this.currentAnimation = currentAnimation;
             stateTime = 0;
             stepIndex = 0;
