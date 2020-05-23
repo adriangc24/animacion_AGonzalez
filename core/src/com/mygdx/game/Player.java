@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -23,6 +24,8 @@ public class Player {
 
     private TextureRegion currentFrame;
     private Animation[] animations;
+    private int stepIndex = 0;
+
 
     public Player(TextureRegion textureRegionWalking, TextureRegion textureRegionRunning) {
         TextureRegion[][] tmp = textureRegionWalking.split(textureRegionWalking.getRegionWidth() / FRAME_COLS,
@@ -43,13 +46,21 @@ public class Player {
         setCurretAnimation(WALKING);
     }
         public void setCurretAnimation(int currentAnimation){
-
+            this.currentAnimation = currentAnimation;
+            stateTime = 0;
+            stepIndex = 0;
         }
         public int getCurrentAnimation(){
                 return currentAnimation;
         }
         public void update(SpriteBatch batch){
+            stateTime += Gdx.graphics.getDeltaTime();
 
+            currentFrame = (TextureRegion) animations[currentAnimation].getKeyFrame(stateTime, true);
+            batch.begin();
+            batch.draw(currentFrame, Gdx.graphics.getWidth() / 2 - currentFrame.getRegionWidth() /2,
+                    Gdx.graphics.getHeight() / 2 - currentFrame.getRegionHeight() /2);
+            batch.end();
         }
     }
 }
