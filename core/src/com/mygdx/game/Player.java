@@ -36,6 +36,11 @@ public class Player {
         }
         walkingAnimation = new Animation(0.05f, walkingFrames);
         walkingAnimation.setPlayMode(Animation.PlayMode.LOOP);
+
+        animations = new Animation[1];
+        animations[0]= walkingAnimation;
+
+        setCurretAnimation(WALKING);
     }
         public void setCurretAnimation(int currentAnimation){
 
